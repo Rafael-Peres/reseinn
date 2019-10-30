@@ -1,22 +1,18 @@
-import errorHandler from "errorhandler";
+import express from 'express';
+import routes from './routes/routes';
 
-import app from "./app";
+export default class Server {
+	public app: express.Application;
 
-/**
- * Error Handler. Provides full stack - remove for production
- */
-app.use(errorHandler());
+	constructor() {
+		this.app = express();
+		this.routes();
+	}
 
-/**
- * Start Express server.
- */
-const server = app.listen(app.get("port"), () => {
-    console.log(
-        "  App is running at http://localhost:%d in %s mode",
-        app.get("port"),
-        app.get("env")
-    );
-    console.log("  Press CTRL-C to stop\n");
-});
-
-export default server;
+	routes() {
+		this.app.use('/api', routes)
+	}
+	listen(port: number) {
+		this.app.listen(port, () => console.log(`Server rodando na porta ${port}`));
+	}
+}
