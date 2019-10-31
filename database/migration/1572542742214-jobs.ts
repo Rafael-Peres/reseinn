@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class Users1572541299739 implements MigrationInterface {
+export default class Jobs1572542742214 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'jobs',
         columns: [
           {
             name: 'id',
@@ -13,31 +13,28 @@ export default class Users1572541299739 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'username',
+            name: 'salary',
+            type: 'int',
+          },
+          {
+            name: 'company',
             type: 'varchar',
           },
           {
-            name: 'password',
+            name: 'description',
             type: 'varchar',
           },
           {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
-          },
-          {
-            name: 'document',
-            type: 'varchar',
-            length: '14',
-          },
-          {
-            name: 'full_Name',
+            name: 'requirements',
             type: 'varchar',
           },
           {
-            name: 'birthdate',
-            type: 'date',
-            isNullable: true,
+            name: 'benefits',
+            type: 'varchar',
+          },
+          {
+            name: 'work_schedule',
+            type: 'varchar',
           },
           {
             name: 'city',
@@ -49,10 +46,6 @@ export default class Users1572541299739 implements MigrationInterface {
           },
           {
             name: 'recruiter_id',
-            type: 'int',
-          },
-          {
-            name: 'candidate_id',
             type: 'int',
           },
           {
@@ -68,15 +61,14 @@ export default class Users1572541299739 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
-            isNullable: true,
+            default: 'now()',
           },
         ],
-      }),
-      true
+      })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('jobs');
   }
 }
