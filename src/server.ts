@@ -1,4 +1,5 @@
-import express from 'express';
+import * as express from 'express';
+
 import routes from './routes/routes';
 
 export default class Server {
