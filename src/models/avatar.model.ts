@@ -6,31 +6,38 @@ import {
   CreatedAt,
   UpdatedAt,
   DeletedAt,
-  BelongsToMany,
-  HasOne,
+  Unique,
+  ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
-import JobRecruiter from './job-recruiter.model';
-import Job from './job.model';
 import User from './user.model';
 
 @Table({
-  tableName: 'recruiters',
+  tableName: 'avatars',
   underscored: true,
   timestamps: true,
 })
-export default class Recruiter extends Model<Recruiter> {
+export default class Avatar extends Model<Avatar> {
   @PrimaryKey
   @Column({ field: 'id' })
   public id: number;
 
-  @BelongsToMany(() => Job, () => JobRecruiter)
-  public jobs: Job[];
+  @Unique
+  @ForeignKey(() => User)
+  @Column({ field: 'user_id' })
+  public userId: number;
 
-  @HasOne(() => User)
+  @BelongsTo(() => User)
   public user: User;
 
-  @Column({ field: 'presentation_letter' })
-  public presentationLetter: string;
+  @Column
+  public filename: string;
+
+  @Column
+  public extension: string;
+
+  @Column
+  public path: string;
 
   @CreatedAt
   @Column({ field: 'created_at' })

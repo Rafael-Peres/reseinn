@@ -6,12 +6,13 @@ import {
   CreatedAt,
   UpdatedAt,
   DeletedAt,
-  ForeignKey,
   BelongsToMany,
+  HasOne,
 } from 'sequelize-typescript';
-import User from './user.model';
 import Job from './job.model';
 import JobCandidate from './job-candidate.model';
+import Curriculum from './curriculum.model';
+import User from './user.model';
 
 @Table({
   tableName: 'candidates',
@@ -23,12 +24,23 @@ export default class Candidate extends Model<Candidate> {
   @Column({ field: 'id' })
   public id: number;
 
-  @ForeignKey(() => User)
-  @Column({ field: 'user_id' })
-  public userId: number;
-
   @BelongsToMany(() => Job, () => JobCandidate)
   public jobs: Job[];
+
+  @HasOne(() => Curriculum)
+  public curriculum: Curriculum;
+
+  @HasOne(() => User)
+  public user: User;
+
+  @Column
+  public profession: string;
+
+  @Column({ field: 'level_training' })
+  public levelTraining: string;
+
+  @Column
+  public pretense: string;
 
   @CreatedAt
   @Column({ field: 'created_at' })

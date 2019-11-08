@@ -12,6 +12,7 @@ import {
 import Candidate from './candidate.model';
 import JobCandidate from './job-candidate.model';
 import Recruiter from './recruiter.model';
+import JobRecruiter from './job-recruiter.model';
 
 @Table({
   tableName: 'jobs',
@@ -53,6 +54,9 @@ export default class Job extends Model<Job> {
 
   @BelongsToMany(() => Candidate, () => JobCandidate)
   public candidates: Candidate[];
+
+  @BelongsToMany(() => Recruiter, () => JobRecruiter)
+  public recruiters: Recruiter[];
 
   @CreatedAt
   @Column({ field: 'created_at' })

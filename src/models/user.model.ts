@@ -8,7 +8,13 @@ import {
   DeletedAt,
   AllowNull,
   Unique,
+  HasOne,
+  ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
+import Avatar from './avatar.model';
+import Candidate from './candidate.model';
+import Recruiter from './recruiter.model';
 
 @Table({
   tableName: 'users',
@@ -19,6 +25,25 @@ export default class User extends Model<User> {
   @PrimaryKey
   @Column({ field: 'id' })
   public id: number;
+
+  @Unique
+  @ForeignKey(() => Candidate)
+  @Column({ field: 'candidate_id' })
+  public candidateId: number;
+
+  @BelongsTo(() => Candidate)
+  public candidate: Candidate;
+
+  @Unique
+  @ForeignKey(() => Recruiter)
+  @Column({ field: 'recruiter_id' })
+  public recruiterId: number;
+
+  @BelongsTo(() => Recruiter)
+  public recruiter: Recruiter;
+
+  @HasOne(() => Avatar)
+  public avatar: Avatar;
 
   @Unique
   @Column
