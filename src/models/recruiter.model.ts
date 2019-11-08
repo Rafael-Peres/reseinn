@@ -6,45 +6,23 @@ import {
   CreatedAt,
   UpdatedAt,
   DeletedAt,
-  AllowNull,
-  Unique,
+  ForeignKey,
 } from 'sequelize-typescript';
+import User from './user.model';
 
 @Table({
-  tableName: 'users',
+  tableName: 'recruiters',
   underscored: true,
   timestamps: true,
 })
-export default class User extends Model<User> {
+export default class Recruiter extends Model<Recruiter> {
   @PrimaryKey
   @Column({ field: 'id' })
   public id: number;
 
-  @Unique
-  @Column
-  public username: string;
-
-  @Column
-  public password: string;
-
-  @Column({ field: 'full_name' })
-  public fullName: string;
-
-  @Column
-  public email?: string;
-
-  @Column
-  public document?: string;
-
-  @AllowNull
-  @Column
-  public birthDate?: Date;
-
-  @Column
-  public city?: string;
-
-  @Column
-  public state?: string;
+  @ForeignKey(() => User)
+  @Column({ field: 'user_id' })
+  public userId: number;
 
   @CreatedAt
   @Column({ field: 'created_at' })

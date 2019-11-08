@@ -35,7 +35,6 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.4",
-    "ts-node": "3.3.0",
-    "typescript": "3.3.3333"
+    "ts-node": "3.3.0"
   }
 }
