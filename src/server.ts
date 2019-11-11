@@ -11,7 +11,7 @@ export default class Server {
   }
 
   routes() {
-    this.app.use('/api', routes);
+    this.app.use('/', routes);
   }
 
   listen(port: number) {
