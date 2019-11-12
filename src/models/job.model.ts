@@ -8,6 +8,7 @@ import {
   DeletedAt,
   BelongsToMany,
   ForeignKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Candidate from './candidate.model';
 import JobCandidate from './job-candidate.model';
@@ -21,6 +22,7 @@ import JobRecruiter from './job-recruiter.model';
 })
 export default class Job extends Model<Job> {
   @PrimaryKey
+  @AutoIncrement
   @Column({ field: 'id' })
   public id: number;
 

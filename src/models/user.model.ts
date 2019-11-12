@@ -11,6 +11,7 @@ import {
   HasOne,
   ForeignKey,
   BelongsTo,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Avatar from './avatar.model';
 import Candidate from './candidate.model';
@@ -23,6 +24,7 @@ import Recruiter from './recruiter.model';
 })
 export default class User extends Model<User> {
   @PrimaryKey
+  @AutoIncrement
   @Column({ field: 'id' })
   public id: number;
 

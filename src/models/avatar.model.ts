@@ -9,6 +9,7 @@ import {
   Unique,
   ForeignKey,
   BelongsTo,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import User from './user.model';
 
@@ -19,6 +20,7 @@ import User from './user.model';
 })
 export default class Avatar extends Model<Avatar> {
   @PrimaryKey
+  @AutoIncrement
   @Column({ field: 'id' })
   public id: number;
 

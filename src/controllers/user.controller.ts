@@ -1,5 +1,5 @@
-import { Request, Response, Router } from 'express';
-import UserService from '../services/user.service';
+import { Request, Response, Router } from "express";
+import UserService from "../services/user.service";
 
 export default new (class UserController {
   private router = Router();
@@ -9,11 +9,11 @@ export default new (class UserController {
   }
 
   public routes() {
-    this.router.post('/', this.store);
-    this.router.get('/', this.index);
-    this.router.get('/:id', this.show);
-    this.router.put('/:id', this.update);
-    this.router.delete('/:id', this.delete);
+    this.router.post("/", this.store);
+    this.router.get("/", this.index);
+    this.router.get("/:id", this.show);
+    this.router.put("/:id", this.update);
+    this.router.delete("/:id", this.delete);
     return this.router;
   }
 
@@ -46,7 +46,6 @@ export default new (class UserController {
       res.status(201).json(user);
     } catch (error) {
       const { name: message, statusCode } = error;
-
       res.status(statusCode).json({ message });
     }
   }

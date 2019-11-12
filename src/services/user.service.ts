@@ -1,6 +1,7 @@
 import User from '../models/user.model';
 import { ApiError } from '../middlewares/ApiError';
 import Avatar from '../models/avatar.model';
+import * as bcryptjs from 'bcryptjs';
 
 export default class UserService {
   public static async index(): Promise<any> {
@@ -22,9 +23,12 @@ export default class UserService {
     });
   }
 
-  public static async store(req): Promise<User> {
+  public static async store(body): Promise<User> {
+    if (body.password) {
+      body.password = await this.hashPassword(body.password);
+    }
     const user = await User.create({
-      ...req,
+      ...body,
     }).catch(error => {
       throw new ApiError(error, 400);
     });
@@ -32,14 +36,18 @@ export default class UserService {
     return user;
   }
 
-  public static async update(id: number, req): Promise<User> {
+  public static async update(id: number, body): Promise<User> {
     const user = await User.findByPk(id);
 
     if (!user) {
       throw new ApiError('Usuário não localizado', 404);
     }
 
-    await user.update({ ...req }).catch(error => {
+    if (body.password) {
+      body.password = await this.hashPassword(body.password);
+    }
+
+    await user.update({ ...body }).catch(error => {
       throw new ApiError(error, 400);
     });
     await user.save();
@@ -58,5 +66,11 @@ export default class UserService {
     }
 
     await user.destroy({ force: true });
+  }
+
+  public static async hashPassword(password) {
+    if (password) {
+      return await bcryptjs.hash(password, 8);
+    }
   }
 }

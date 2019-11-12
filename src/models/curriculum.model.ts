@@ -9,6 +9,7 @@ import {
   Unique,
   ForeignKey,
   BelongsTo,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Candidate from './candidate.model';
 
@@ -19,6 +20,7 @@ import Candidate from './candidate.model';
 })
 export default class Curriculum extends Model<Curriculum> {
   @PrimaryKey
+  @AutoIncrement
   @Column({ field: 'id' })
   public id: number;
 

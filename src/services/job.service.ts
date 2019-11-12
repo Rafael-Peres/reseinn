@@ -15,9 +15,9 @@ export default class JobService {
     return Job.findByPk(id, {});
   }
 
-  public static async store(req): Promise<Job> {
+  public static async store(body): Promise<Job> {
     const job = await Job.create({
-      ...req,
+      ...body,
     }).catch(error => {
       throw new ApiError(error, 400);
     });
@@ -25,19 +25,19 @@ export default class JobService {
     return job;
   }
 
-  public static async update(id: number, req): Promise<Job> {
+  public static async update(id: number, body): Promise<Job> {
     const job = await Job.findByPk(id);
 
     if (!job) {
       throw new ApiError('Vaga não localizada', 404);
     }
 
-    await job.update({ ...req }).catch(error => {
+    await job.update({ ...body }).catch(error => {
       throw new ApiError(error, 400);
     });
     await job.save();
 
-    return Job.findByPk(job.id, {});
+    return Job.findByPk(job.id);
   }
 
   public static async delete(id: number): Promise<any> {
