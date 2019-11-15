@@ -2,12 +2,13 @@ import { ApiError } from '../middlewares/ApiError';
 import Curriculum from '../models/curriculum.model';
 import Candidate from '../models/candidate.model';
 import Job from '../models/job.model';
+import User from '../models/user.model';
 
 export default class CandidateService {
   public static async index(): Promise<any> {
     try {
       const candidates = await Candidate.findAll({
-        include: [{ model: Curriculum }],
+        include: [{ model: Curriculum }, { model: User }],
       });
       return candidates;
     } catch (error) {
@@ -17,7 +18,7 @@ export default class CandidateService {
 
   public static show(id: number): Promise<Candidate> {
     return Candidate.findByPk(id, {
-      include: [{ model: Curriculum }],
+      include: [{ model: Curriculum }, { model: User }],
     });
   }
 
@@ -35,7 +36,7 @@ export default class CandidateService {
     const candidate = await Candidate.findByPk(id);
 
     if (!candidate) {
-      throw new ApiError('Usuário não localizado', 404);
+      throw new ApiError('Candidato não localizado', 404);
     }
 
     await candidate.update({ ...body }).catch(error => {
@@ -52,7 +53,7 @@ export default class CandidateService {
     const candidate = await Candidate.findByPk(id);
 
     if (!candidate) {
-      throw new ApiError('Usuário não localizado para o ID informado', 404);
+      throw new ApiError('Candidato não localizado para o ID informado', 404);
     }
 
     await candidate.destroy({ force: true });

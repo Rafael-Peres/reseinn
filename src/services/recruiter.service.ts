@@ -1,11 +1,14 @@
 import { ApiError } from '../middlewares/ApiError';
 import Recruiter from '../models/recruiter.model';
 import Job from '../models/job.model';
+import User from '../models/user.model';
 
 export default class RecruiterService {
   public static async index(): Promise<any> {
     try {
-      const recruiters = await Recruiter.findAll({});
+      const recruiters = await Recruiter.findAll({
+        include: [{ model: User }],
+      });
       return recruiters;
     } catch (error) {
       throw new ApiError(error, 500);
@@ -13,7 +16,7 @@ export default class RecruiterService {
   }
 
   public static show(id: number): Promise<Recruiter> {
-    return Recruiter.findByPk(id, {});
+    return Recruiter.findByPk(id, { include: [{ model: User }] });
   }
 
   public static async store(body): Promise<Recruiter> {

@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
-import UserService from '../services/user.service';
+import CandidateService from '../services/candidate.service';
 
-export default new (class UserController {
+export default new (class CandidateController {
   private router = Router();
 
   constructor() {
@@ -14,13 +14,15 @@ export default new (class UserController {
     this.router.get('/:id', this.show);
     this.router.put('/:id', this.update);
     this.router.delete('/:id', this.delete);
+    this.router.put('/:id/associateJobs', this.associateJobs);
+
     return this.router;
   }
 
   private async index(req: Request, res: Response): Promise<any> {
     try {
-      const users = await UserService.index();
-      res.status(200).json(users);
+      const candidates = await CandidateService.index();
+      res.status(200).json(candidates);
     } catch (error) {
       const { name: message, statusCode } = error;
 
@@ -31,8 +33,8 @@ export default new (class UserController {
   private async show(req: Request, res: Response): Promise<any> {
     try {
       const { id } = req.params;
-      const user = await UserService.show(Number(id));
-      res.status(200).json(user);
+      const candidade = await CandidateService.show(Number(id));
+      res.status(200).json(candidade);
     } catch (error) {
       const { name: message, statusCode } = error;
 
@@ -42,8 +44,8 @@ export default new (class UserController {
 
   private async store(req: Request, res: Response): Promise<any> {
     try {
-      const user = await UserService.store(req.body);
-      res.status(201).json(user);
+      const candidade = await CandidateService.store(req.body);
+      res.status(201).json(candidade);
     } catch (error) {
       const { name: message, statusCode } = error;
       res.status(statusCode).json({ message });
@@ -53,9 +55,9 @@ export default new (class UserController {
   private async update(req: Request, res: Response): Promise<any> {
     try {
       const { id } = req.params;
-      const user = await UserService.update(Number(id), req.body);
+      const candidade = await CandidateService.update(Number(id), req.body);
 
-      res.status(200).json(user);
+      res.status(200).json(candidade);
     } catch (error) {
       const { name: message, statusCode } = error;
 
@@ -66,9 +68,25 @@ export default new (class UserController {
   private async delete(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const user = await UserService.delete(Number(id));
+      const candidade = await CandidateService.delete(Number(id));
 
-      res.status(200).json({ user });
+      res.status(200).json({ candidade });
+    } catch (error) {
+      const { name: message, statusCode } = error;
+
+      res.status(statusCode).json({ message });
+    }
+  }
+
+  private async associateJobs(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { jobId } = req.body;
+      const userAssociate = await CandidateService.associateJobs(
+        Number(id),
+        jobId
+      );
+      res.status(200).json(userAssociate);
     } catch (error) {
       const { name: message, statusCode } = error;
 
