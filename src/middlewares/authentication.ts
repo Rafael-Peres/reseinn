@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 
+// eslint-disable-next-line import/prefer-default-export
 export const authMiddleware = async function(
   req: express.Request,
   res: express.Response,
@@ -23,6 +24,7 @@ export const authMiddleware = async function(
         res.status(401).json({ message: err.message });
         return;
       }
+      // eslint-disable-next-line dot-notation
       req['user'] = decoded;
 
       const user = await User.findByPk(decoded.userId);

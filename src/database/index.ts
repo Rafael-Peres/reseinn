@@ -41,7 +41,9 @@ export default class Connection {
 
       await this.dbconn.authenticate();
 
-      await this.dbconn.sync({});
+      await this.dbconn.sync({
+        // force: true
+      });
 
       return this.dbconn;
     } catch (err) {

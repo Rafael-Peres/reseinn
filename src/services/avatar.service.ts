@@ -11,7 +11,6 @@ export default class AvatarService {
     if (!avatar) {
       throw new ApiError('Foto não encontrada.', 404);
     }
-    console.log(avatar);
 
     return avatar;
   }
@@ -37,7 +36,7 @@ export default class AvatarService {
       throw new ApiError(error, 400);
     });
 
-    return await avatar.save();
+    return avatar.save();
   }
 
   public static async update(userId: number, body) {
@@ -60,12 +59,12 @@ export default class AvatarService {
         throw new ApiError(error, 400);
       });
 
-    return await avatar.save();
+    return avatar.save();
   }
 
   public static async delete(userId: number): Promise<any> {
     const avatar = await Avatar.findOne({ where: { userId } });
     StorageService.remove(avatar.path);
-    return await avatar.destroy({ force: true });
+    return avatar.destroy({ force: true });
   }
 }

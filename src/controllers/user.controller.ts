@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import UserService from '../services/user.service';
+import ChangePasswordService from '../services/change_password.service';
 
 export default new (class UserController {
   private router = Router();
@@ -14,6 +15,7 @@ export default new (class UserController {
     this.router.get('/:id', this.show);
     this.router.put('/:id', this.update);
     this.router.delete('/:id', this.delete);
+    this.router.put('/:id/passsword', this.updatePassword);
     return this.router;
   }
 
@@ -69,6 +71,19 @@ export default new (class UserController {
       const user = await UserService.delete(Number(id));
 
       res.status(200).json({ user });
+    } catch (error) {
+      const { name: message, statusCode } = error;
+
+      res.status(statusCode).json({ message });
+    }
+  }
+
+  private async updatePassword(req: Request, res: Response): Promise<any> {
+    try {
+      const { id } = req.params;
+      const user = await ChangePasswordService.update(req.body, id);
+
+      res.status(200).json(user);
     } catch (error) {
       const { name: message, statusCode } = error;
 

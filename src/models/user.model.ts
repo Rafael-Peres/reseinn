@@ -12,10 +12,12 @@ import {
   ForeignKey,
   BelongsTo,
   AutoIncrement,
+  DataType,
 } from 'sequelize-typescript';
 import Avatar from './avatar.model';
 import Candidate from './candidate.model';
 import Recruiter from './recruiter.model';
+import { Gender } from '../enums/gender.enum';
 
 @Table({
   tableName: 'users',
@@ -62,6 +64,10 @@ export default class User extends Model<User> {
 
   @Column
   public document?: string;
+
+  @AllowNull
+  @Column(DataType.ENUM(Gender.Female, Gender.Male, Gender.Others))
+  public gender?: Gender;
 
   @AllowNull
   @Column
