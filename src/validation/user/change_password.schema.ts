@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 
-export default class PasswordValidation {
+export default class ChangePasswordValidation {
   private schema = Joi.object().keys({
     currentPassword: Joi.string()
       .min(3)

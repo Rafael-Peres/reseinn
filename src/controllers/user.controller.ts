@@ -15,7 +15,7 @@ export default new (class UserController {
     this.router.get('/:id', this.show);
     this.router.put('/:id', this.update);
     this.router.delete('/:id', this.delete);
-    this.router.put('/:id/passsword', this.updatePassword);
+    this.router.put('/:id/password', this.updatePassword);
     return this.router;
   }
 

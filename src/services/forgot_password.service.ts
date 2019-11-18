@@ -2,12 +2,16 @@ import * as bcryptjs from 'bcryptjs';
 
 import { ApiError } from '../middlewares/ApiError';
 import User from '../models/user.model';
+import ForgotPasswordValidation from '../validation/auth/forgot_password.schema';
 
 export default class ForgotPasswordService {
   /**
    * reset the user password
    */
   public static async forgot(request): Promise<any> {
+    await new ForgotPasswordValidation().validate(request).catch(error => {
+      throw new ApiError(error, 400);
+    });
     const { username, document, email } = request;
 
     const user = await User.findOne({ where: { username } });

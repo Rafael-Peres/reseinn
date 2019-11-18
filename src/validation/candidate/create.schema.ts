@@ -1,17 +1,18 @@
 import * as Joi from 'joi';
 
-export default class ForgotPasswordValidation {
+export default class CreateCandidateValidation {
   private schema = Joi.object().keys({
-    username: Joi.string()
-      .min(3)
-      .max(30)
+    profession: Joi.string()
+      .min(1)
+      .max(50)
       .required(),
-    document: Joi.string()
-      .min(11)
-      .max(14)
+    levelTraining: Joi.string()
+      .min(1)
+      .max(32)
       .required(),
-    email: Joi.string()
-      .email()
+    pretense: Joi.string()
+      .min(1)
+      .max(32)
       .required(),
   });
 

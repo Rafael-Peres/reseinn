@@ -2,13 +2,18 @@ import * as bcryptjs from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { ApiError } from '../middlewares/ApiError';
 import User from '../models/user.model';
+import AuthValidation from '../validation/auth/auth.schema';
 
 export default class AuthService {
   public static async login(body): Promise<any> {
+    await new AuthValidation().validate(body).catch(error => {
+      throw new ApiError(error, 400);
+    });
+
     const { username, password } = body;
 
     const user = await User.findOne({
-      where: { username: username },
+      where: { username },
     });
 
     const validate = await bcryptjs.compare(password, user.password);
@@ -19,13 +24,13 @@ export default class AuthService {
 
     const token = this.getToken(user);
 
-    return Object.assign({
+    return {
       user: {
         ...user.toJSON(),
         password: undefined,
       },
       token,
-    });
+    };
   }
 
   private static getToken(user: User) {

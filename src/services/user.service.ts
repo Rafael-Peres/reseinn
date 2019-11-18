@@ -4,6 +4,8 @@ import { ApiError } from '../middlewares/ApiError';
 import Avatar from '../models/avatar.model';
 import Recruiter from '../models/recruiter.model';
 import Candidate from '../models/candidate.model';
+import UpdateUserValidation from '../validation/user/user-update.schema';
+import CreateUserValidation from '../validation/user/user-create.schema';
 
 export default class UserService {
   public static async index(): Promise<any> {
@@ -30,6 +32,10 @@ export default class UserService {
   }
 
   public static async store(body): Promise<User> {
+    await new CreateUserValidation().validate(body).catch(error => {
+      throw new ApiError(error, 400);
+    });
+
     if (body.password) {
       body.password = await this.hashPassword(body.password);
     }
@@ -43,6 +49,10 @@ export default class UserService {
   }
 
   public static async update(id: number, body): Promise<User> {
+    await new UpdateUserValidation().validate(body).catch(error => {
+      throw new ApiError(error, 400);
+    });
+
     const user = await User.findByPk(id);
 
     if (!user) {

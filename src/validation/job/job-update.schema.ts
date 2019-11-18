@@ -1,34 +1,32 @@
 import * as Joi from 'joi';
-import { Gender } from '../../enums/gender.enum';
 
-export default class UpdateUserValidation {
+export default class UpdateJobValidation {
   private schema = Joi.object().keys({
-    username: Joi.string()
+    salary: Joi.string()
       .min(3)
       .max(30)
       .optional(),
-    fullName: Joi.string()
+    company: Joi.string()
+      .min(3)
+      .max(30)
+      .allow('', null)
+      .optional(),
+    benefits: Joi.string()
       .min(3)
       .max(50)
       .allow('', null)
       .optional(),
-    document: Joi.string()
+    description: Joi.string()
       .min(11)
-      .max(14)
+      .max(120)
       .optional(),
-    email: Joi.string()
-      .email()
+    requiriments: Joi.string()
+      .min(3)
+      .max(60)
       .optional(),
-    birthDate: Joi.string()
-      .min(6)
-      .max(12)
-      .optional(),
-    password: Joi.string()
-      .min(6)
-      .max(12)
-      .optional(),
-    gender: Joi.string()
-      .valid(Gender.Female, Gender.Male, Gender.Others)
+    workSchedule: Joi.string()
+      .min(3)
+      .max(30)
       .allow('', null)
       .optional(),
     city: Joi.string()

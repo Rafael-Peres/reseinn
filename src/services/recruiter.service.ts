@@ -2,6 +2,8 @@ import { ApiError } from '../middlewares/ApiError';
 import Recruiter from '../models/recruiter.model';
 import Job from '../models/job.model';
 import User from '../models/user.model';
+import CreateRecruiterValidation from '../validation/recruiter/recruiter-create.schema';
+import UpdateRecruiterValidation from '../validation/recruiter/recruiter-update.schema';
 
 export default class RecruiterService {
   public static async index(): Promise<any> {
@@ -20,6 +22,10 @@ export default class RecruiterService {
   }
 
   public static async store(body): Promise<Recruiter> {
+    await new CreateRecruiterValidation().validate(body).catch(error => {
+      throw new ApiError(error, 400);
+    });
+
     const recruiter = await Recruiter.create({
       ...body,
     }).catch(error => {
@@ -30,6 +36,10 @@ export default class RecruiterService {
   }
 
   public static async update(id: number, body): Promise<Recruiter> {
+    await new UpdateRecruiterValidation().validate(body).catch(error => {
+      throw new ApiError(error, 400);
+    });
+
     const recruiter = await Recruiter.findByPk(id);
 
     if (!recruiter) {
