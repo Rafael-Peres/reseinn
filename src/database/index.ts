@@ -42,7 +42,7 @@ export default class Connection {
       await this.dbconn.authenticate();
 
       await this.dbconn.sync({
-        // force: true
+        force: true,
       });
 
       return this.dbconn;

@@ -30,6 +30,9 @@ export default class Job extends Model<Job> {
   public salary: string;
 
   @Column
+  public title: string;
+
+  @Column
   public company: string;
 
   @Column
