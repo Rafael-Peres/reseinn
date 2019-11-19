@@ -36,7 +36,7 @@ export default class CreateUserValidation {
       .max(30)
       .required(),
     state: Joi.string()
-      .min(3)
+      .min(2)
       .max(30)
       .required(),
   });

@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 
 import routes from './routes/routes';
 
@@ -8,6 +9,7 @@ export default class Server {
   constructor() {
     this.app = express();
     this.app.use(express.json());
+    this.app.use(cors());
     this.routes();
   }
 

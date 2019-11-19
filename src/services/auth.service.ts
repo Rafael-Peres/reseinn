@@ -16,6 +16,10 @@ export default class AuthService {
       where: { username },
     });
 
+    if (!user) {
+      throw new ApiError('Usuário não localizado.', 404);
+    }
+
     const validate = await bcryptjs.compare(password, user.password);
 
     if (!validate) {
