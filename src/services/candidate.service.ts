@@ -20,7 +20,7 @@ export default class CandidateService {
 
   public static show(id: number): Promise<Candidate> {
     return Candidate.findByPk(id, {
-      include: [{ model: Curriculum }, { model: User }],
+      include: [{ model: Curriculum }, { model: User }, { model: Job }],
     });
   }
 
@@ -76,12 +76,12 @@ export default class CandidateService {
     const candidate = await Candidate.findByPk(candidateId);
     const job = await Job.findByPk(jobId);
 
-    if (job) {
+    if (!job) {
       throw new ApiError('Vagas não localizadas para os IDS informados', 404);
     }
-    await candidate.$set('jobs', job);
+    await candidate.$add('jobs', job);
 
-    return Candidate.findByPk(candidateId, {
+    return await Candidate.findByPk(candidateId, {
       include: [{ model: Job }],
     });
   }
