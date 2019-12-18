@@ -9,6 +9,11 @@ Uma API Rest para gerenciamento de vagas. candidados podem se cadastrar na API p
 * Typescript
 * PostgresSQL
 
+## Pré-requisitos
+
+* Instalar [NodeJS](https://nodejs.org/en/)
+* Instalar [PostgresSQL](https://www.postgresql.org/)
+
 ## Instalação
 
 ## Estrutura do banco de dados da aplicação
