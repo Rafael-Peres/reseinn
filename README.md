@@ -1,4 +1,4 @@
-# DKR - Vagas
+# RP - Vagas
 
 Uma API Rest para gerenciamento de vagas. candidados podem se cadastrar na API para enviar seus curriculos as vagas que são postadas por recrudadores.
 
