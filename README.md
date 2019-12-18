@@ -14,11 +14,26 @@ Uma API Rest para gerenciamento de vagas. candidados podem se cadastrar na API p
 * Instalar [NodeJS](https://nodejs.org/en/)
 * Instalar [PostgresSQL](https://www.postgresql.org/)
 
-## Instalação
+## Começando 
+
+* Copiar o Repositório
+
+``
+git clone git@github.com:Rafael-Peres/RP-Vagas.git <Nome-do-Projeto>
+``
+
+* Instalar dependências 
+
+``
+cd <Nome-do-Projeto>  
+yarn
+``
+
+## Documentação da API
+
+https://documenter.getpostman.com/view/8324547/SWECWFPh
 
 ## Estrutura do banco de dados da aplicação
 
 ![public](/public.png)
-## Documentação da API
 
-https://documenter.getpostman.com/view/8324547/SWECWFPh
