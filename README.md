@@ -9,6 +9,8 @@ Uma API Rest para gerenciamento de vagas. candidados podem se cadastrar na API p
 * Typescript
 * PostgresSQL
 
+## Instalação
+
 ## Estrutura do banco de dados da aplicação
 
 ![public](/public.png)
