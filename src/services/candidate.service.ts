@@ -3,8 +3,6 @@ import Curriculum from '../models/curriculum.model';
 import Candidate from '../models/candidate.model';
 import Job from '../models/job.model';
 import User from '../models/user.model';
-import CreateCandidateValidation from '../validation/candidate/create.schema';
-import UpdateCandidateValidation from '../validation/candidate/update.schema';
 
 export default class CandidateService {
   public static async index(): Promise<any> {
@@ -25,13 +23,9 @@ export default class CandidateService {
   }
 
   public static async store(body): Promise<Candidate> {
-    await new CreateCandidateValidation().validate(body).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const candidate = await Candidate.create({
       ...body,
-    }).catch(error => {
+    }).catch((error) => {
       throw new ApiError(error, 400);
     });
 
@@ -39,17 +33,13 @@ export default class CandidateService {
   }
 
   public static async update(id: number, body): Promise<Candidate> {
-    await new UpdateCandidateValidation().validate(body).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const candidate = await Candidate.findByPk(id);
 
     if (!candidate) {
       throw new ApiError('Candidato não localizado', 404);
     }
 
-    await candidate.update({ ...body }).catch(error => {
+    await candidate.update({ ...body }).catch((error) => {
       throw new ApiError(error, 400);
     });
     await candidate.save();

@@ -4,4 +4,4 @@ import Connection from './database/index';
 new Connection();
 
 const server = new Server();
-server.listen(3535);
+server.listen(3333);

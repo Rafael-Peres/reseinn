@@ -2,7 +2,6 @@ import * as bcryptjs from 'bcryptjs';
 import { ApiError } from '../middlewares/ApiError';
 
 import User from '../models/user.model';
-import ChangePasswordValidation from '../validation/user/change_password.schema';
 
 export default class ChangePasswordService {
   /**
@@ -10,10 +9,6 @@ export default class ChangePasswordService {
    */
 
   public static async update(request, userId: string) {
-    await new ChangePasswordValidation().validate(request).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const user = await User.findByPk(userId);
 
     const { currentPassword, newPassword, confirmation } = request;

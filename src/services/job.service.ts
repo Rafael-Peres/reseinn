@@ -1,7 +1,5 @@
 import { ApiError } from '../middlewares/ApiError';
 import Job from '../models/job.model';
-import CreateJobValidation from '../validation/job/job-create.schema';
-import UpdateJobValidation from '../validation/job/job-update.schema';
 
 export default class JobService {
   public static async index(): Promise<any> {
@@ -18,13 +16,9 @@ export default class JobService {
   }
 
   public static async store(body): Promise<Job> {
-    await new CreateJobValidation().validate(body).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const job = await Job.create({
       ...body,
-    }).catch(error => {
+    }).catch((error) => {
       throw new ApiError(error, 400);
     });
 
@@ -32,17 +26,13 @@ export default class JobService {
   }
 
   public static async update(id: number, body): Promise<Job> {
-    await new UpdateJobValidation().validate(body).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const job = await Job.findByPk(id);
 
     if (!job) {
       throw new ApiError('Vaga não localizada', 404);
     }
 
-    await job.update({ ...body }).catch(error => {
+    await job.update({ ...body }).catch((error) => {
       throw new ApiError(error, 400);
     });
     await job.save();

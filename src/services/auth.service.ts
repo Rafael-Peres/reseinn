@@ -2,14 +2,9 @@ import * as bcryptjs from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { ApiError } from '../middlewares/ApiError';
 import User from '../models/user.model';
-import AuthValidation from '../validation/auth/auth.schema';
 
 export default class AuthService {
   public static async login(body): Promise<any> {
-    await new AuthValidation().validate(body).catch(error => {
-      throw new ApiError(error, 400);
-    });
-
     const { username, password } = body;
 
     const user = await User.findOne({
