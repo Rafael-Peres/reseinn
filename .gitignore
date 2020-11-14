@@ -6,4 +6,4 @@ tmp/
 temp/
 dist/
 .env
-.yarn.lock
+yarn.lock
