@@ -4,6 +4,7 @@ import { ApiError } from '../middlewares/ApiError';
 import Avatar from '../models/avatar.model';
 import Recruiter from '../models/recruiter.model';
 import Candidate from '../models/candidate.model';
+
 export default class UserService {
   public static async index(): Promise<any> {
     try {
