@@ -1,4 +1,4 @@
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import Job from '../models/job.model';
 
 export default class JobService {

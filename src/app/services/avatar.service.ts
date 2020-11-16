@@ -1,6 +1,6 @@
 import * as express from 'express';
 import Avatar from '../models/avatar.model';
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import UploadService from './upload.service';
 import StorageService from './storage.service';
 
@@ -32,7 +32,7 @@ export default class AvatarService {
       extension: file.originalname.substr(file.originalname.lastIndexOf('.')),
       path: `/Avatar/${file.filename}`,
       userId,
-    }).catch(error => {
+    }).catch((error) => {
       throw new ApiError(error, 400);
     });
 
@@ -55,7 +55,7 @@ export default class AvatarService {
         extension: file.originalname.slice(-4),
         path: `/Avatar/${file.filename}`,
       })
-      .catch(error => {
+      .catch((error) => {
         throw new ApiError(error, 400);
       });
 

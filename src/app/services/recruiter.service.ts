@@ -1,4 +1,4 @@
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import Recruiter from '../models/recruiter.model';
 import Job from '../models/job.model';
 import User from '../models/user.model';

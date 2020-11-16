@@ -1,6 +1,6 @@
 import * as bcryptjs from 'bcryptjs';
 
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import User from '../models/user.model';
 
 export default class ForgotPasswordService {

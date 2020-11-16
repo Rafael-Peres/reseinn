@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 
 export default class StorageService {
   public static remove(path: string): void {

@@ -1,6 +1,6 @@
 import * as bcryptjs from 'bcryptjs';
 import User from '../models/user.model';
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import Avatar from '../models/avatar.model';
 import Recruiter from '../models/recruiter.model';
 import Candidate from '../models/candidate.model';

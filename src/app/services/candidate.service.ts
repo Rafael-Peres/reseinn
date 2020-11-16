@@ -1,4 +1,4 @@
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import Curriculum from '../models/curriculum.model';
 import Candidate from '../models/candidate.model';
 import Job from '../models/job.model';

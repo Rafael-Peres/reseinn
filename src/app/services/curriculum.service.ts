@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { ApiError } from '../middlewares/ApiError';
+import { ApiError } from '../../middlewares/ApiError';
 import UploadService from './upload.service';
 import StorageService from './storage.service';
 import Curriculum from '../models/curriculum.model';
@@ -34,7 +34,7 @@ export default class CurriculumService {
       extension: file.originalname.substr(file.originalname.lastIndexOf('.')),
       path: `/Curriculum/${file.filename}`,
       candidateId,
-    }).catch(error => {
+    }).catch((error) => {
       throw new ApiError(error, 400);
     });
 
@@ -57,7 +57,7 @@ export default class CurriculumService {
         extension: file.originalname.slice(-4),
         path: `/Curriculum/${file.filename}`,
       })
-      .catch(error => {
+      .catch((error) => {
         throw new ApiError(error, 400);
       });
 

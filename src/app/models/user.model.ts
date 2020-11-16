@@ -17,7 +17,7 @@ import {
 import Avatar from './avatar.model';
 import Candidate from './candidate.model';
 import Recruiter from './recruiter.model';
-import { Gender } from '../enums/gender.enum';
+import { Gender } from '../../enums/gender.enum';
 
 @Table({
   tableName: 'users',
