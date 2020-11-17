@@ -51,3 +51,7 @@ https://documenter.getpostman.com/view/8324547/SWECWFPh
 ## Estrutura do banco de dados da aplicação
 
 ![public](/public.png)
+
+yarn typeorm migration:create -n createUsers
+
+yarn typeorm migration:run

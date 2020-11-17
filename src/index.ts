@@ -1,7 +1,5 @@
 import Server from './server';
-import Connection from './database/index';
-
-new Connection();
+import './database/index';
 
 const server = new Server();
 server.listen(3333);

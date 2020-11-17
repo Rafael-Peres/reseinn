@@ -1,0 +1,14 @@
+{ 
+  "type": "postgres",
+  "host": "lallah.db.elephantsql.com",
+  "port": 5432,
+  "username": "pfdcmjct",
+  "password": "MB8d1oaG-t6CpAJH6Jw1N6rKq9f9qdcV",
+  "database": "pfdcmjct",
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
