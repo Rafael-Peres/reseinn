@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
-import User from '../models/user.model';
+import User from '../app/models/user.model';
 
 // eslint-disable-next-line import/prefer-default-export
-export const authMiddleware = async function(
+export const authMiddleware = async function (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction

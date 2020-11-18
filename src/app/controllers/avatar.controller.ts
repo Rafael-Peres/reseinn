@@ -23,6 +23,7 @@ export default new (class AvatarController {
 
       res.status(201).json(avatar);
     } catch (error) {
+      console.log(error);
       const { name: message, statusCode } = error;
 
       res.status(statusCode).json({ message });

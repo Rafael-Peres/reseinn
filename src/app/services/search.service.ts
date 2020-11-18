@@ -8,7 +8,6 @@ export default class SearchService {
   public static async index(search: string): Promise<any> {
     try {
       const posts = await User.findAll({
-        // attributes: ['profession'],
         include: [
           {
             model: Candidate,

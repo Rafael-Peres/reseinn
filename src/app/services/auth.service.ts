@@ -5,10 +5,10 @@ import User from '../models/user.model';
 
 export default class AuthService {
   public static async login(body): Promise<any> {
-    const { username, password } = body;
+    const { email, password } = body;
 
     const user = await User.findOne({
-      where: { username },
+      where: { email },
     });
 
     if (!user) {
