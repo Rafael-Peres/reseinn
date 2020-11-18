@@ -6,4 +6,4 @@ const { PORT } = process.env;
 new Connection();
 
 const server = new Server();
-server.listen(Number(PORT));
+server.listen(Number(PORT) || 3333);

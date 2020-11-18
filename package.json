@@ -8,7 +8,7 @@
   "author": "Rafael Peres",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "nodemon src/index.ts",
     "dev": "nodemon -x ts-node src/index.ts"
   },
   "dependencies": {
