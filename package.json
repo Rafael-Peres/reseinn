@@ -8,7 +8,9 @@
   "author": "Rafael Peres",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "node server/index.js",
+    "postinstall": "tsc",
+    "watch-node": "nodemon server/index.js",
     "dev": "nodemon -x ts-node src/index.ts"
   },
   "dependencies": {
