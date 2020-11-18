@@ -8,6 +8,7 @@ import avatarController from '../app/controllers/avatar.controller';
 import candidateController from '../app/controllers/candidate.controller';
 import recruiterController from '../app/controllers/recruiter.controller';
 import curriculumController from '../app/controllers/curriculum.controller';
+import searchController from '../app/controllers/search.controller';
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.get('/ping', (req, res) => {
 router.use('/users', userController.routes());
 router.use('/users', avatarController.routes());
 router.use('/jobs', jobController.routes());
+router.use('/candidates', searchController.routes());
 router.use('/candidates', candidateController.routes());
 router.use('/candidates', curriculumController.routes());
 router.use('/recruiters', recruiterController.routes());

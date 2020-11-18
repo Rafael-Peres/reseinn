@@ -30,7 +30,7 @@ export default class Connection {
         },
         logging: false,
         timezone: '-03:00',
-        modelPaths: [path.normalize(`${__dirname}/../models`)],
+        modelPaths: [path.normalize(`${__dirname}/../app/models`)],
         modelMatch: (filename, member) => {
           return (
             filename.substring(0, filename.indexOf('.model')) ===
