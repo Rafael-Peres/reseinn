@@ -71,7 +71,7 @@ export default class CandidateService {
     }
     await candidate.$add('jobs', job);
 
-    return await Candidate.findByPk(candidateId, {
+    return Candidate.findByPk(candidateId, {
       include: [{ model: Job }],
     });
   }

@@ -33,13 +33,25 @@ export default class Curriculum extends Model<Curriculum> {
   public candidate: Candidate;
 
   @Column
-  public filename: string;
+  public telephone: number;
 
   @Column
-  public extension: string;
+  public cellPhone: number;
 
   @Column
-  public path: string;
+  public interest: string;
+
+  @Column
+  public professionalGoal: string;
+
+  @Column
+  public professionalResume: string;
+
+  @Column
+  public course: string;
+
+  @Column
+  public company: string;
 
   @CreatedAt
   @Column({ field: 'created_at' })
