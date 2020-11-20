@@ -19,10 +19,10 @@ router.get('/ping', (req, res) => {
 
 // router.use(authMiddleware);
 
-router.use('/userss', avatarController.routes());
+router.use('/users', avatarController.routes());
 router.use('/users', userController.routes());
 router.use('/jobs', jobController.routes());
-router.use('/candidates', searchController.routes());
+router.use('/search', searchController.routes());
 router.use('/candidates', candidateController.routes());
 router.use('/candidates', curriculumController.routes());
 router.use('/recruiters', recruiterController.routes());
