@@ -3,7 +3,9 @@ import Curriculum from '../models/curriculum.model';
 
 export default class CurriculumService {
   public static async show(candidateId: number): Promise<Curriculum> {
-    const curriculum = await Curriculum.findByPk(candidateId);
+    const curriculum = await Curriculum.findOne({
+      where: { candidateId },
+    });
     if (!curriculum) {
       throw new ApiError('Curriculo nao encontrado.', 404);
     }
@@ -21,7 +23,9 @@ export default class CurriculumService {
   }
 
   public static async update(body, candidateId: number) {
-    const curriculum = await Curriculum.findByPk(candidateId);
+    const curriculum = await Curriculum.findOne({
+      where: { candidateId },
+    });
 
     if (!curriculum) {
       throw new ApiError('Curriculo não localizado para o ID informado', 404);
@@ -35,7 +39,9 @@ export default class CurriculumService {
   }
 
   public static async delete(candidateId: number): Promise<any> {
-    const curriculum = await Curriculum.findByPk(candidateId);
+    const curriculum = await Curriculum.findOne({
+      where: { candidateId },
+    });
 
     if (!curriculum) {
       throw new ApiError('Curriculo não localizado para o ID informado', 404);

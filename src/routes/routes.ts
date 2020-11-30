@@ -24,7 +24,7 @@ router.use('/users', userController.routes());
 router.use('/jobs', jobController.routes());
 router.use('/search', searchController.routes());
 router.use('/candidates', candidateController.routes());
-router.use('/candidates', curriculumController.routes());
+router.use('/curriculum', curriculumController.routes());
 router.use('/recruiters', recruiterController.routes());
 
 process.on('uncaughtException', (err) => {

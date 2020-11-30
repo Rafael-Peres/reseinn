@@ -9,18 +9,18 @@ export default new (class CurriculumController {
   }
 
   public routes() {
-    this.router.post('/:id/curriculum', this.store);
-    this.router.get('/:id/curriculum', this.show);
-    this.router.put('/:id/curriculum', this.update);
-    this.router.delete('/:id/curriculum', this.delete);
+    this.router.post('/', this.store);
+    this.router.get('/:candidateId', this.show);
+    this.router.put('/:candidateId', this.update);
+    this.router.delete('/:candidateId', this.delete);
     return this.router;
   }
 
   private async show(req: Request, res: Response): Promise<any> {
     try {
-      const { id } = req.params;
-      const recruiter = await CurriculumService.show(Number(id));
-      res.status(200).json(recruiter);
+      const { candidateId } = req.params;
+      const curriculum = await CurriculumService.show(Number(candidateId));
+      res.status(200).json(curriculum);
     } catch (error) {
       const { name: message, statusCode } = error;
 
@@ -30,8 +30,8 @@ export default new (class CurriculumController {
 
   private async store(req: Request, res: Response): Promise<any> {
     try {
-      const recruiter = await CurriculumService.store(req.body);
-      res.status(201).json(recruiter);
+      const curriculum = await CurriculumService.store(req.body);
+      res.status(201).json(curriculum);
     } catch (error) {
       const { name: message, statusCode } = error;
       res.status(statusCode).json({ message });
@@ -40,11 +40,16 @@ export default new (class CurriculumController {
 
   private async update(req: Request, res: Response): Promise<any> {
     try {
-      const { id } = req.params;
-      const recruiter = await CurriculumService.update(Number(id), req.body);
+      const { candidateId } = req.params;
+      const curriculum = await CurriculumService.update(
+        Number(candidateId),
+        req.body
+      );
 
-      res.status(200).json(recruiter);
+      res.status(200).json(curriculum);
     } catch (error) {
+      console.log(error);
+
       const { name: message, statusCode } = error;
 
       res.status(statusCode).json({ message });
@@ -53,10 +58,10 @@ export default new (class CurriculumController {
 
   private async delete(req: Request, res: Response): Promise<void> {
     try {
-      const { id } = req.params;
-      const recruiter = await CurriculumService.delete(Number(id));
+      const { candidateId } = req.params;
+      const curriculum = await CurriculumService.delete(Number(candidateId));
 
-      res.status(200).json({ recruiter });
+      res.status(200).json({ curriculum });
     } catch (error) {
       const { name: message, statusCode } = error;
 
