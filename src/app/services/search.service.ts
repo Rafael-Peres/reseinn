@@ -8,23 +8,18 @@ import User from '../models/user.model';
 export default class SearchService {
   public static async indexUser(search: string): Promise<any> {
     try {
-      const candidates = await User.findAll({
-        include: [
-          {
-            model: Candidate,
-            include: [{ model: Curriculum }],
-            where: {
-              [Op.or]: {
-                profession: {
-                  [Op.iLike]: `%${search}%`,
-                },
-                levelTraining: {
-                  [Op.iLike]: `%${search}%`,
-                },
-              },
+      const candidates = await Candidate.findAll({
+        include: [{ model: User }, { model: Curriculum }],
+        where: {
+          [Op.or]: {
+            profession: {
+              [Op.iLike]: `%${search}%`,
+            },
+            levelTraining: {
+              [Op.iLike]: `%${search}%`,
             },
           },
-        ],
+        },
       });
       return candidates;
     } catch (error) {
